@@ -13,7 +13,7 @@ export default class extends BaseSeeder {
         Array.from({ length: 5 }, async (_, i) => {
           await user.related('blogs').create({
             title: `My Blog Post ${i + 1}`,
-            content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...`,
+            content: blogText,
           })
         })
       )

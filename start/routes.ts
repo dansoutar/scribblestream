@@ -24,10 +24,21 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 
-Route.get('/user', 'UsersController.index').middleware('jwt')
-
-Route.get('/user/me', 'UsersController.me').middleware('jwt')
-
+// Auth controllers
+Route.post('/auth/login', 'AuthController.login')
 Route.post('/auth/register', 'AuthController.register')
 
-Route.post('/auth/login', 'AuthController.login')
+// User controllers
+Route.get('/user', 'UsersController.index').middleware('jwt')
+Route.get('/user/me', 'UsersController.me').middleware('jwt')
+
+// Blog controllers
+Route.group(() => {
+  Route.get('/', 'BlogController.index')
+  Route.get('/:id', 'BlogController.show')
+  Route.post('/', 'BlogController.store')
+  Route.patch('/:id', 'BlogController.update')
+  Route.delete('/:id', 'BlogController.destroy')
+})
+  .prefix('/blog')
+  .middleware('jwt')
