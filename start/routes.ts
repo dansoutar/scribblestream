@@ -34,11 +34,11 @@ Route.get('/user/me', 'UsersController.me').middleware('jwt')
 
 // Blog controllers
 Route.group(() => {
-  Route.get('/', 'BlogController.index')
-  Route.get('/:id', 'BlogController.show')
-  Route.post('/', 'BlogController.store')
-  Route.patch('/:id', 'BlogController.update')
-  Route.delete('/:id', 'BlogController.destroy')
+  Route.get('/', 'BlogsController.index')
+  Route.get('/:id', 'BlogsController.show')
+  Route.post('/', 'BlogsController.store')
+  Route.patch('/:id', 'BlogsController.update')
+  Route.delete('/:id', 'BlogsController.destroy')
 })
   .prefix('/blog')
   .middleware('jwt')

@@ -53,6 +53,11 @@ export default class AuthController {
 
     const exp = Number(Date.now()) + 1000 * 60 * 60 * 24 * 1 // milliseconds * seconds * minutes * hours * days
 
+    const userData = {
+      id: user.id,
+      email: user.email,
+    }
+
     const token = jwt.sign(
       {
         iss: 'danny-blog-api',
@@ -60,18 +65,16 @@ export default class AuthController {
         sub: 'user_auth',
         aud: user.id,
         data: {
-          user: {
-            id: user.id,
-            email: user.email,
-          },
+          user: userData,
         },
       },
       appKey
     )
 
     return {
-      message: 'User successfully logged in!',
       access_token: token,
+      message: 'User successfully logged in!',
+      user: userData,
     }
   }
 }
